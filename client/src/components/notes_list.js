@@ -1,12 +1,12 @@
-"use strict";
-
-import React from "react";
+import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 import Octicon from "react-octicon";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import { sortNotes } from "../actions";
 import Note from "./note";
+
+const { func, array, string, bool } = PropTypes;
 
 function NotesList(props) {
   const onEditNote = note => {
@@ -120,6 +120,17 @@ function NotesList(props) {
     );
   }
 }
+
+NotesList.propTypes = {
+  loading: bool,
+  editNote: func.isRequired,
+  deleteNote: func.isRequired,
+  sortField: string,
+  sortNotes: func.isRequired,
+  searchTerm: string,
+  reverse: bool,
+  notes: array,
+};
 
 export default connect(
   null,

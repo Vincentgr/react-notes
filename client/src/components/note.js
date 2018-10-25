@@ -1,18 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import reactStringReplace from "react-string-replace";
 import Octicon from "react-octicon";
+
+const { func, string } = PropTypes;
 
 export default class Note extends Component {
   render() {
     const { searchTerm, data: note } = this.props;
-
     return (
       <div className="row">
         <div className="cell title" data-title="Title">
           {searchTerm
-            ? reactStringReplace(note.title.substring(0, 100), searchTerm, (match, i) => (
-                <strong key={i}>{match}</strong>
-              ))
+            ? reactStringReplace(
+                note.title.substring(0, 100),
+                searchTerm,
+                (match, i) => <strong key={i}>{match}</strong>
+              )
             : note.title.substring(0, 100)}
         </div>
         <div className="cell note" data-title="Note">
@@ -55,3 +58,10 @@ export default class Note extends Component {
     );
   }
 }
+
+Note.propTypes = {
+  onDeleteNote: func.isRequired,
+  onEditNote: func.isRequired,
+  searchTerm: string,
+  note: string,
+};
