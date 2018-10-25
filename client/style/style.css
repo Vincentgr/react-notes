@@ -197,56 +197,6 @@ div.form-group {
   background: #27ae60;
 }
 
-@media screen and (max-width: 800px) {
-
-  body {
-    font-size: 16px;
-    line-height: 22px;
-  }
-
-  .cell {
-    padding: 2px 16px;
-    display: block;
-  }
-
-  .cell.modified {
-    width: 25%;
-  }
-
-  .table {
-    display: block;
-  }
-
-  .row {
-    padding: 14px 0 7px;
-    display: block;
-  }
-
-  .row.header {
-    padding: 0;
-    height: 6px;
-  }
-
-  .row.header .cell {
-    display: none;
-  }
-
-  .row .cell {
-    margin-bottom: 10px;
-  }
-
-  .row .cell:before {
-    margin-bottom: 3px;
-    content: attr(data-title);
-    font-size: 10px;
-    line-height: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #969696;
-    display: block;
-  }
-}
-
 /* Modal */
 
 textarea.form-control.content {
@@ -307,7 +257,7 @@ textarea.form-control.content {
 }
 
 .search {
-  width: 140px;
+  width: 180px;
   transition: width 1s;
   padding: 2px;
   margin: 0 2px;
@@ -335,6 +285,81 @@ textarea.form-control.content {
   position: relative;
 }
 
+@media screen and (max-width: 420px) {
+
+  .cell {
+    padding: 1px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #add .text {
+    display: none;
+  }
+  
+  .search {
+    width: 100px;
+    padding: 1px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  body {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .container {
+    padding: 0;
+    margin: 0;
+    max-width: 100% !important;
+  }
+
+  .cell {
+    padding: 2px 16px;
+    display: block;
+  }
+
+  .cell.modified {
+    width: 25%;
+  }
+
+  .table {
+    display: block;
+  }
+
+  .row {
+    padding: 14px 0 7px;
+    display: block;
+  }
+
+  .row.header {
+    padding: 0;
+    height: 6px;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell {
+    margin-bottom: 10px;
+  }
+
+  .row .cell:before {
+    margin-bottom: 3px;
+    content: attr(data-title);
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #969696;
+    display: block;
+  }
+}
+
 @media screen and (max-width: 1000px) {
 
   .cell.glyphs {
@@ -352,15 +377,5 @@ textarea.form-control.content {
   .octicon-pencil,
   .octicon-trashcan {
     padding: 4px 25px !important;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .cell {
-    padding: 1px;
-  }
-
-  #add .text {
-    display: none;
   }
 }
