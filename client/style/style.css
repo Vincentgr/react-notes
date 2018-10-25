@@ -1,0 +1,366 @@
+#NotesApp {
+  padding: 25px 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #3b3b3b;
+  background: #2b2b2b;
+}
+
+header {
+  display: flex !important;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin-bottom: .25rem;
+}
+
+.clickable, .octicon {
+	cursor: pointer;
+}
+
+.octicon {
+  cursor: pointer;
+}
+
+.sorted .octicon {
+  margin-left: 2px;
+}
+
+.unsorted .octicon {
+  display: none !important;
+}
+
+.octicon-pencil,
+.octicon-trashcan {
+  padding: 5px;
+  border: 1px solid #bbbbbb;
+  background-color: #ffffff;
+  border-radius: 3px;
+  width: 32px;
+  margin: 2px;
+}
+
+.octicon-pencil:hover,
+.octicon-trashcan:hover {
+  background-color: #dddddd;
+}
+
+
+a.column-header {
+	text-decoration: underline !important;
+}
+
+h1 {
+	font-size: 1.8rem !important;
+}
+
+div.form-group, div.input-group-btn {
+	float: left;
+	margin: 0 0.3rem 0 0;
+}
+
+/* Notes List */
+
+.note-appear {
+  opacity: 0.01;
+}
+
+.note-appear.note-appear-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}
+
+.note-enter {
+  opacity: 0.01;
+}
+
+.note-enter.note-enter-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}
+
+.note-leave {
+  opacity: 1;
+}
+
+.note-leave.note-leave-active {
+  opacity: 0.01;
+  transition: opacity 400ms ease-in;
+}
+
+/* Inputs */
+
+input.editmode {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	border: 0px;
+	vertical-align: initial;
+}
+
+.has-danger > input, .has-danger textarea {
+background-color: #F5AFAC;
+}
+
+td > input {
+	background-color : #FFFFE0;
+}
+
+input:focus {
+	background-color: #FEFFBE;
+	border-color: #66afe9;
+}
+
+.button-group {
+  display: flex;
+}
+
+/* Note Entry Form */
+
+.note-entry-section button {
+	margin: 5px;
+}
+
+div.form-group {
+	margin: 5px 5px;
+}
+
+.input-group {
+	margin: 20px 0px;
+	flex-direction: column;
+}
+
+.input-group.note-entry.hidden, section.hidden {
+	display: none;
+}
+
+/* Tables */
+
+.cell {
+  padding: 6px 16px;
+  display: table-cell;
+  overflow-wrap: break-word;
+}
+
+.cell.title,
+.cell.modified {
+	width: 20%;
+}
+
+.cell.note {
+	width: 50%;
+  max-width: 600px;
+}
+
+.cell.glyph {
+	width: 15px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 800px;
+}
+
+.table {
+  margin: 0 0 40px 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: table;
+}
+
+.row {
+  display: table-row;
+  background: #f6f6f6;
+  margin: 0 !important;
+}
+
+.row:nth-of-type(odd) {
+  background: #e9e9e9;
+}
+
+.row.header {
+  font-weight: 900;
+  color: #ffffff;
+  background: #ea6153;
+}
+
+.row.green {
+  background: #27ae60;
+}
+
+@media screen and (max-width: 800px) {
+
+  body {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .cell {
+    padding: 2px 16px;
+    display: block;
+  }
+
+  .cell.modified {
+    width: 25%;
+  }
+
+  .table {
+    display: block;
+  }
+
+  .row {
+    padding: 14px 0 7px;
+    display: block;
+  }
+
+  .row.header {
+    padding: 0;
+    height: 6px;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell {
+    margin-bottom: 10px;
+  }
+
+  .row .cell:before {
+    margin-bottom: 3px;
+    content: attr(data-title);
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #969696;
+    display: block;
+  }
+}
+
+/* Modal */
+
+textarea.form-control.content {
+  height: 40vh;
+}
+
+.modal-overlay-div {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .65);
+}
+
+.modal-content-div {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    overflow: auto;
+    text-align: center;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.modal-content-div:after {
+    vertical-align: middle;
+    display: inline-block;
+    height: 100%;
+    margin-left: -.05em;
+    content: '';
+}
+
+.modal-dialog-div {
+    position: relative;
+    outline: 0;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    max-width: auto;
+    cursor: default;
+    border-radius: 4px;
+}
+
+/* Search Bar */
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search {
+  width: 140px;
+  transition: width 1s;
+  padding: 2px;
+  margin: 0 2px;
+}
+
+.search.hidden {
+  width: 0;
+  border: 0;
+}
+
+.octicon-search {
+  margin: 0 2px;
+}
+
+#search,
+#add {
+  margin: 0 2px;
+}
+
+/* Misc */
+
+.mega-octicon {
+  font-size: 64px !important;
+  left: 50%;
+  position: relative;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .cell.glyphs {
+    display: flex !important;
+  }
+
+  .cell.glyph {
+    width: unset;
+  }
+
+  .octicon {
+    display: unset !important;
+  }
+
+  .octicon-pencil,
+  .octicon-trashcan {
+    padding: 4px 25px !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .cell {
+    padding: 1px;
+  }
+
+  #add .text {
+    display: none;
+  }
+}
