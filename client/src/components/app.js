@@ -1,5 +1,5 @@
 import React from "react";
-import { Component } from "react";
+import { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
 import Octicon from "react-octicon";
@@ -15,6 +15,8 @@ import { getSortedNotes } from "../selectors/notes";
 
 import NoteModal from "./note_modal";
 import NotesList from "./notes_list";
+
+const { func, array, string, bool } = PropTypes;
 
 class App extends Component {
   constructor(props) {
@@ -115,6 +117,18 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  loadAllNotes: func.isRequired,
+  deleteNote: func.isRequired,
+  searchNotes: func.isRequired,
+  clearSearch: func.isRequired,
+  notes: array,
+  searchTerm: string,
+  sortField: string,
+  reverse: bool,
+};
+
 function mapStateToProps(state) {
   return {
     notes: getSortedNotes(state),
