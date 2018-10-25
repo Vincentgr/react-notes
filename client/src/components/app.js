@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
+import { debounce } from "lodash";
 import Octicon from "react-octicon";
 import classnames from "classnames";
 
@@ -53,9 +54,9 @@ class App extends Component {
     );
   };
 
-  onSearch = event => {
-    this.props.searchNotes(event.target.value);
-  };
+  debouncedOnSearch = debounce(value => {
+    this.props.searchNotes(value);
+  }, 500);
 
   render() {
     return (
@@ -69,7 +70,9 @@ class App extends Component {
               })}
               aria-label="Search Notes"
               placeholder="Search"
-              onChange={this.onSearch}
+              onChange={evt => {
+                this.debouncedOnSearch(evt.target.value);
+              }}
               ref={ref => {
                 this.searchInput = ref;
               }}
