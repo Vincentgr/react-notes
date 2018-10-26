@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { reset, change } from "redux-form";
@@ -9,8 +9,9 @@ import Octicon from "react-octicon";
 import { saveNote, updateNote } from "../actions/index";
 import { reduxForm } from "redux-form";
 
-class NoteEntryForm extends Component {
+const { func, object } = PropTypes;
 
+class NoteEntryForm extends Component {
   componentWillMount() {
     if (this.props.editNote) {
       const { editNote } = this.props;
@@ -127,6 +128,12 @@ class NoteEntryForm extends Component {
     );
   }
 }
+
+NoteEntryForm.propTypes = {
+  onClose: func.isRequired,
+  resetForm: func.isRequired,
+  editNote: object
+};
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ saveNote, updateNote, change }, dispatch);

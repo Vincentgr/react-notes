@@ -1,6 +1,7 @@
 import React from "react";
-import { Component } from "react";
+import { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { debounce } from "lodash";
 import Octicon from "react-octicon";
 import classnames from "classnames";
 
@@ -14,6 +15,8 @@ import { getSortedNotes } from "../selectors/notes";
 
 import NoteModal from "./note_modal";
 import NotesList from "./notes_list";
+
+const { func, array, string, bool } = PropTypes;
 
 class App extends Component {
   constructor(props) {
@@ -53,9 +56,9 @@ class App extends Component {
     );
   };
 
-  onSearch = event => {
-    this.props.searchNotes(event.target.value);
-  };
+  debouncedOnSearch = debounce(value => {
+    this.props.searchNotes(value);
+  }, 500);
 
   render() {
     return (
@@ -69,7 +72,9 @@ class App extends Component {
               })}
               aria-label="Search Notes"
               placeholder="Search"
-              onChange={this.onSearch}
+              onChange={evt => {
+                this.debouncedOnSearch(evt.target.value);
+              }}
               ref={ref => {
                 this.searchInput = ref;
               }}
@@ -112,6 +117,18 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  loadAllNotes: func.isRequired,
+  deleteNote: func.isRequired,
+  searchNotes: func.isRequired,
+  clearSearch: func.isRequired,
+  notes: array,
+  searchTerm: string,
+  sortField: string,
+  reverse: bool,
+};
+
 function mapStateToProps(state) {
   return {
     notes: getSortedNotes(state),

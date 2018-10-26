@@ -1,6 +1,4 @@
-"use strict";
-
-import React from "react";
+import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 import Octicon from "react-octicon";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
@@ -8,7 +6,10 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { sortNotes } from "../actions";
 import Note from "./note";
 
+const { func, array, string, bool } = PropTypes;
+
 function NotesList(props) {
+  
   const onEditNote = note => {
     props.editNote(note);
   };
@@ -35,13 +36,14 @@ function NotesList(props) {
   };
 
   if (props.loading) {
-    return <Octicon mega spin name="sync" />;
+    return <Octicon mega spin name="sync" className="note-list-loading" aria-label="Please wait..."/>;
   } else {
     return (
-      <section>
+      <section className="notes-list">
         <div className="table">
           <div className="row header green">
             <div
+              id="column-header-title"
               className={`cell title ${
                 props.sortField == "title" ? "sorted" : "unsorted"
               }`}
@@ -65,6 +67,7 @@ function NotesList(props) {
             </div>
             <div className="cell note">Note</div>
             <div
+              id="column-header-modified"
               className={`cell modified ${
                 props.sortField == "modified" ? "sorted" : "unsorted"
               }`}
@@ -120,6 +123,17 @@ function NotesList(props) {
     );
   }
 }
+
+NotesList.propTypes = {
+  loading: bool,
+  editNote: func.isRequired,
+  deleteNote: func.isRequired,
+  sortField: string,
+  sortNotes: func.isRequired,
+  searchTerm: string,
+  reverse: bool,
+  notes: array,
+};
 
 export default connect(
   null,
