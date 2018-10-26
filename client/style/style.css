@@ -21,6 +21,11 @@ header h1 {
   margin-bottom: .25rem;
 }
 
+.container {
+  max-width: 100% !important;
+  padding: 15px;
+}
+
 .clickable, .octicon {
 	cursor: pointer;
 }
@@ -158,7 +163,6 @@ div.form-group {
 
 .cell.note {
 	width: 55%;
-  max-width: 600px;
 }
 
 .cell.glyphs {
@@ -286,6 +290,8 @@ textarea.form-control.content {
   position: relative;
 }
 
+/*  Media queries */
+
 @media screen and (max-width: 420px) {
 
   .cell {
@@ -305,17 +311,11 @@ textarea.form-control.content {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 975px) {
 
   body {
     font-size: 16px;
     line-height: 22px;
-  }
-
-  .container {
-    padding: 0;
-    margin: 0;
-    max-width: 100% !important;
   }
 
   .cell {
@@ -325,6 +325,10 @@ textarea.form-control.content {
 
   .cell.modified {
     width: 25%;
+  }
+
+  .cell.glyphs {
+    display: flex !important;
   }
 
   .table {
@@ -358,17 +362,6 @@ textarea.form-control.content {
     text-transform: uppercase;
     color: #969696;
     display: block;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-
-  .cell.glyphs {
-    display: flex !important;
-  }
-
-  .cell.glyph {
-    width: unset;
   }
 
   .octicon {
