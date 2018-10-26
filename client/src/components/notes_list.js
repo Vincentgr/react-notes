@@ -9,7 +9,7 @@ import Note from "./note";
 const { func, array, string, bool } = PropTypes;
 
 function NotesList(props) {
-  
+
   const onEditNote = note => {
     props.editNote(note);
   };
@@ -114,7 +114,7 @@ function NotesList(props) {
             transitionEnterTimeout={600}
             transitionLeaveTimeout={400}
           >
-          <h4>There are no notes to display. Try adding some.</h4>
+          <h5>There are no notes to display. Try adding some.</h5>
             </ReactCSSTransitionGroup>
         ) : (
           ""
