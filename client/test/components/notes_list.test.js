@@ -78,6 +78,7 @@ describe("<NotesList />", () => {
     beforeEach(() => {
       sortNotes = sinon.spy();
       wrapper = getMountedComponent({ sortNotes: sortNotes });
+      store.clearActions();
     });
 
     it('dispatches a Sort action when Title column is clicked', () => {
@@ -89,7 +90,7 @@ describe("<NotesList />", () => {
 
     it('dispatches a Sort action when Modified column is clicked', () => {
       wrapper.find('#column-header-modified .clickable').simulate('click');
-      const action = store.getActions()[1];
+      const action = store.getActions()[0];
       expect(action).to.have.property('type', 'SORT_NOTES');
       expect(action.payload).to.have.property('sortField', 'modified');
     });
